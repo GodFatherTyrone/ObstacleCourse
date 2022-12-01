@@ -4,21 +4,21 @@ using Unit06.Game.Services;
 
 namespace Unit06.Game.Scripting
 {
-    public class DrawRacketAction : Action
+    public class DrawRocketAction : Action
     {
         private VideoService _videoService;
         
-        public DrawRacketAction(VideoService videoService)
+        public DrawRocketAction(VideoService videoService)
         {
             this._videoService = videoService;
         }
 
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            Racket racket = (Racket)cast.GetFirstActor(Constants.RACKET_GROUP);
-            Body body = racket.GetBody();
+            Rocket rocket = (Rocket)cast.GetFirstActor(Constants.ROCKET_GROUP);
+            Body body = rocket.GetBody();
 
-            if (racket.IsDebug())
+            if (rocket.IsDebug())
             {
                 Rectangle rectangle = body.GetRectangle();
                 Point size = rectangle.GetSize();
@@ -26,7 +26,7 @@ namespace Unit06.Game.Scripting
                 _videoService.DrawRectangle(size, pos, Constants.PURPLE, false);
             }
 
-            Animation animation = racket.GetAnimation();
+            Animation animation = rocket.GetAnimation();
             Image image = animation.NextImage();
             Point position = body.GetPosition();
             _videoService.DrawImage(image, position);

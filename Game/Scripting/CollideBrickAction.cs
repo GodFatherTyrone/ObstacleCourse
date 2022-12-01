@@ -5,12 +5,12 @@ using Unit06.Game.Services;
 
 namespace Unit06.Game.Scripting
 {
-    public class CollideBrickAction : Action
+    public class CollideRockAction : Action
     {
         private AudioService _audioService;
         private PhysicsService _physicsService;
         
-        public CollideBrickAction(PhysicsService physicsService, AudioService audioService)
+        public CollideRockAction(PhysicsService physicsService, AudioService audioService)
         {
             this._physicsService = physicsService;
             this._audioService = audioService;
@@ -18,24 +18,24 @@ namespace Unit06.Game.Scripting
 
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            Ball ball = (Ball)cast.GetFirstActor(Constants.BALL_GROUP);
-            List<Actor> bricks = cast.GetActors(Constants.BRICK_GROUP);
+            Bullet bullet = (Bullet)cast.GetFirstActor(Constants.BULLET_GROUP);
+            List<Actor> rock = cast.GetActors(Constants.ROCK_GROUP);
             Stats stats = (Stats)cast.GetFirstActor(Constants.STATS_GROUP);
             
-            foreach (Actor actor in bricks)
+            foreach (Actor actor in rock)
             {
-                Brick brick = (Brick)actor;
-                Body brickBody = brick.GetBody();
-                Body ballBody = ball.GetBody();
+                Rock Rock = (Rock)actor;
+                Body RockBody = Rock.GetBody();
+                Body bulletBody = bullet.GetBody();
 
-                if (_physicsService.HasCollided(brickBody, ballBody))
+                if (_physicsService.HasCollided(RockBody, bulletBody))
                 {
-                    ball.BounceY();
+                    bullet.BounceY();
                     Sound sound = new Sound(Constants.BOUNCE_SOUND);
                     _audioService.PlaySound(sound);
-                    int points = brick.GetPoints();
+                    int points = Rock.GetPoints();
                     stats.AddPoints(points);
-                    cast.RemoveActor(Constants.BRICK_GROUP, brick);
+                    cast.RemoveActor(Constants.ROCK_GROUP, Rock);
                 }
             }
         }

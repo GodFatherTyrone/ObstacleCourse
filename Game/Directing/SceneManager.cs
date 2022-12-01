@@ -51,9 +51,9 @@ namespace Unit06.Game.Directing
             AddLevel(cast);
             AddScore(cast);
             AddLives(cast);
-            AddBall(cast);
-            AddBricks(cast);
-            AddRacket(cast);
+            AddBullet(cast);
+            AddRock(cast);
+            AddRocket(cast);
             AddDialog(cast, Constants.ENTER_TO_START);
 
             script.ClearAllActions();
@@ -70,15 +70,15 @@ namespace Unit06.Game.Directing
 
         private void ActivateBall(Cast cast)
         {
-            Ball ball = (Ball)cast.GetFirstActor(Constants.BALL_GROUP);
-            ball.Release();
+            Bullet bullet = (Bullet)cast.GetFirstActor(Constants.BULLET_GROUP);
+            bullet.Release();
         }
 
         private void PrepareNextLevel(Cast cast, Script script)
         {
-            AddBall(cast);
-            AddBricks(cast);
-            AddRacket(cast);
+            AddBullet(cast);
+            AddRock(cast);
+            AddRocket(cast);
             AddDialog(cast, Constants.PREP_TO_LAUNCH);
 
             script.ClearAllActions();
@@ -94,8 +94,8 @@ namespace Unit06.Game.Directing
 
         private void PrepareTryAgain(Cast cast, Script script)
         {
-            AddBall(cast);
-            AddRacket(cast);
+            AddBullet(cast);
+            AddRocket(cast);
             AddDialog(cast, Constants.PREP_TO_LAUNCH);
 
             script.ClearAllActions();
@@ -114,7 +114,7 @@ namespace Unit06.Game.Directing
 
             script.ClearAllActions();
 
-            ControlRacketAction action = new ControlRacketAction(KeyboardService);
+            ControlRocketAction action = new ControlRocketAction(KeyboardService);
             script.AddAction(Constants.INPUT, action);
 
             AddUpdateActions(script);    
@@ -124,8 +124,8 @@ namespace Unit06.Game.Directing
 
         private void PrepareGameOver(Cast cast, Script script)
         {
-            AddBall(cast);
-            AddRacket(cast);
+            AddBullet(cast);
+            AddRocket(cast);
             AddDialog(cast, Constants.WAS_GOOD_GAME);
 
             script.ClearAllActions();
@@ -140,27 +140,27 @@ namespace Unit06.Game.Directing
         // casting methods
         // -----------------------------------------------------------------------------------------
 
-        private void AddBall(Cast cast)
+        private void AddBullet(Cast cast)
         {
-            cast.ClearActors(Constants.BALL_GROUP);
+            cast.ClearActors(Constants.BULLET_GROUP);
         
-            int x = Constants.CENTER_X - Constants.BALL_WIDTH / 2;
-            int y = Constants.SCREEN_HEIGHT - Constants.RACKET_HEIGHT - Constants.BALL_HEIGHT;
+            int x = Constants.CENTER_X - Constants.BULLET_WIDTH / 2;
+            int y = Constants.SCREEN_HEIGHT - Constants.ROCKET_HEIGHT - Constants.BULLET_HEIGHT;
         
             Point position = new Point(x, y);
-            Point size = new Point(Constants.BALL_WIDTH, Constants.BALL_HEIGHT);
+            Point size = new Point(Constants.BULLET_WIDTH, Constants.BULLET_HEIGHT);
             Point velocity = new Point(0, 0);
         
             Body body = new Body(position, size, velocity);
-            Image image = new Image(Constants.BALL_IMAGE);
-            Ball ball = new Ball(body, image, false);
+            Image image = new Image(Constants.BULLET_IMAGE);
+            Bullet ball = new Bullet(body, image, false);
         
-            cast.AddActor(Constants.BALL_GROUP, ball);
+            cast.AddActor(Constants.BULLET_GROUP, ball);
         }
 
-        private void AddBricks(Cast cast)
+        private void AddRock(Cast cast)
         {
-            cast.ClearActors(Constants.BRICK_GROUP);
+            cast.ClearActors(Constants.ROCK_GROUP);
 
             Stats stats = (Stats)cast.GetFirstActor(Constants.STATS_GROUP);
             int level = stats.GetLevel() % Constants.BASE_LEVELS;
@@ -171,23 +171,23 @@ namespace Unit06.Game.Directing
             {
                 for (int c = 0; c < rows[r].Count; c++)
                 {
-                    int x = Constants.FIELD_LEFT + c * Constants.BRICK_WIDTH;
-                    int y = Constants.FIELD_TOP + r * Constants.BRICK_HEIGHT;
+                    int x = Constants.FIELD_LEFT + c * Constants.ROCK_WIDTH;
+                    int y = Constants.FIELD_TOP + r * Constants.ROCK_HEIGHT;
 
                     string color = rows[r][c][0].ToString();
                     int frames = (int)Char.GetNumericValue(rows[r][c][1]);
-                    int points = Constants.BRICK_POINTS;
+                    int points = Constants.ROCK_POINTS;
 
                     Point position = new Point(x, y);
-                    Point size = new Point(Constants.BRICK_WIDTH, Constants.BRICK_HEIGHT);
+                    Point size = new Point(Constants.ROCK_WIDTH, Constants.ROCK_HEIGHT);
                     Point velocity = new Point(0, 0);
-                    List<string> images = Constants.BRICK_IMAGES[color].GetRange(0, frames);
+                    List<string> images = Constants.ROCK_IMAGES[color].GetRange(0, frames);
 
                     Body body = new Body(position, size, velocity);
-                    Animation animation = new Animation(images, Constants.BRICK_RATE, 1);
+                    Animation animation = new Animation(images, Constants.ROCK_RATE, 1);
                     
-                    Brick brick = new Brick(body, animation, points, false);
-                    cast.AddActor(Constants.BRICK_GROUP, brick);
+                    Rock rock = new Rock(body, animation, points, false);
+                    cast.AddActor(Constants.ROCK_GROUP, rock);
                 }
             }
         }
@@ -229,22 +229,22 @@ namespace Unit06.Game.Directing
             cast.AddActor(Constants.LIVES_GROUP, label);   
         }
 
-        private void AddRacket(Cast cast)
+        private void AddRocket(Cast cast)
         {
-            cast.ClearActors(Constants.RACKET_GROUP);
+            cast.ClearActors(Constants.ROCKET_GROUP);
         
-            int x = Constants.CENTER_X - Constants.RACKET_WIDTH / 2;
-            int y = Constants.SCREEN_HEIGHT - Constants.RACKET_HEIGHT;
+            int x = Constants.CENTER_X - Constants.ROCKET_WIDTH / 2;
+            int y = Constants.SCREEN_HEIGHT - Constants.ROCKET_HEIGHT;
         
             Point position = new Point(x, y);
-            Point size = new Point(Constants.RACKET_WIDTH, Constants.RACKET_HEIGHT);
+            Point size = new Point(Constants.ROCKET_WIDTH, Constants.ROCKET_HEIGHT);
             Point velocity = new Point(0, 0);
         
             Body body = new Body(position, size, velocity);
-            Animation animation = new Animation(Constants.RACKET_IMAGES, Constants.RACKET_RATE, 0);
-            Racket racket = new Racket(body, animation, false);
+            Animation animation = new Animation(Constants.ROCKET_IMAGES, Constants.ROCKET_RATE, 0);
+            Rocket racket = new Rocket(body, animation, false);
         
-            cast.AddActor(Constants.RACKET_GROUP, racket);
+            cast.AddActor(Constants.ROCKET_GROUP, racket);
         }
 
         private void AddScore(Cast cast)
@@ -300,9 +300,9 @@ namespace Unit06.Game.Directing
         {
             script.AddAction(Constants.OUTPUT, new StartDrawingAction(VideoService));
             script.AddAction(Constants.OUTPUT, new DrawHudAction(VideoService));
-            script.AddAction(Constants.OUTPUT, new DrawBallAction(VideoService));
-            script.AddAction(Constants.OUTPUT, new DrawBricksAction(VideoService));
-            script.AddAction(Constants.OUTPUT, new DrawRacketAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawBulletAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawRockAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawRocketAction(VideoService));
             script.AddAction(Constants.OUTPUT, new DrawDialogAction(VideoService));
             script.AddAction(Constants.OUTPUT, new EndDrawingAction(VideoService));
         }
@@ -320,11 +320,11 @@ namespace Unit06.Game.Directing
 
         private void AddUpdateActions(Script script)
         {
-            script.AddAction(Constants.UPDATE, new MoveBallAction());
-            script.AddAction(Constants.UPDATE, new MoveRacketAction());
+            script.AddAction(Constants.UPDATE, new MoveBulletAction());
+            script.AddAction(Constants.UPDATE, new MoveRocketAction());
             script.AddAction(Constants.UPDATE, new CollideBordersAction(PhysicsService, AudioService));
-            script.AddAction(Constants.UPDATE, new CollideBrickAction(PhysicsService, AudioService));
-            script.AddAction(Constants.UPDATE, new CollideRacketAction(PhysicsService, AudioService));
+            script.AddAction(Constants.UPDATE, new CollideRockAction(PhysicsService, AudioService));
+            script.AddAction(Constants.UPDATE, new CollideRocketAction(PhysicsService, AudioService));
             script.AddAction(Constants.UPDATE, new CheckOverAction());     
         }
     }

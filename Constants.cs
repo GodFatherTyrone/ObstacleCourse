@@ -95,32 +95,32 @@ namespace Unit06
         public static string LIVES_FORMAT = "LIVES: {0}";
         public static string SCORE_FORMAT = "SCORE: {0}";
 
-        // BALL
-        public static string BALL_GROUP = "balls";
-        public static string BALL_IMAGE = "Assets/Images/000.png";
-        public static int BALL_WIDTH = 28;
-        public static int BALL_HEIGHT = 28;
-        public static int BALL_VELOCITY = 6;
+        // BULLET
+        public static string BULLET_GROUP = "bullet";
+        public static string BULLET_IMAGE = "Assets/Images/000.png";
+        public static int BULLET_WIDTH = 28;
+        public static int BULLET_HEIGHT = 28;
+        public static int BULLET_VELOCITY = 6;
 
-        // RACKET
-        public static string RACKET_GROUP = "rackets";
+        // ROCKET
+        public static string ROCKET_GROUP = "rocket";
         
-        public static List<string> RACKET_IMAGES
+        public static List<string> ROCKET_IMAGES
             = new List<string>() {
                 "Assets/Images/100.png",
                 "Assets/Images/101.png",
                 "Assets/Images/102.png"
             };
 
-        public static int RACKET_WIDTH = 106;
-        public static int RACKET_HEIGHT = 28;
-        public static int RACKET_RATE = 6;
-        public static int RACKET_VELOCITY = 7;
+        public static int ROCKET_WIDTH = 28;
+        public static int ROCKET_HEIGHT = 28;
+        public static int ROCKET_RATE = 6;
+        public static int ROCKET_VELOCITY = 10;
 
-        // BRICK
-        public static string BRICK_GROUP = "bricks";
+        // Rock
+        public static string ROCK_GROUP = "rock";
         
-        public static Dictionary<string, List<string>> BRICK_IMAGES
+        public static Dictionary<string, List<string>> ROCK_IMAGES
             = new Dictionary<string, List<string>>() {
                 { "b", new List<string>() {
                     "Assets/Images/010.png",
@@ -168,11 +168,11 @@ namespace Unit06
                 } }
         };
 
-        public static int BRICK_WIDTH = 80;
-        public static int BRICK_HEIGHT = 28;
-        public static double BRICK_DELAY = 0.5;
-        public static int BRICK_RATE = 4;
-        public static int BRICK_POINTS = 50;
+        public static int ROCK_WIDTH = 80;
+        public static int ROCK_HEIGHT = 28;
+        public static double ROCK_DELAY = 0.5;
+        public static int ROCK_RATE = 4;
+        public static int ROCK_POINTS = 50;
 
         // DIALOG
         public static string DIALOG_GROUP = "dialogs";

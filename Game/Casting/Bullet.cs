@@ -7,7 +7,7 @@ namespace Unit06.Game.Casting
     /// <summary>
     /// 
     /// </summary>
-    public class Ball : Actor
+    public class Bullet : Actor
     {
         private static Random _random = new Random();
 
@@ -17,14 +17,14 @@ namespace Unit06.Game.Casting
         /// <summary>
         /// Constructs a new instance of Actor.
         /// </summary>
-        public Ball(Body body, Image image, bool debug = false) : base(debug)
+        public Bullet(Body body, Image image, bool debug = false) : base(debug)
         {
             this._body = body;
             this._image = image;
         }
 
         /// <summary>
-        /// Bounces the ball horizontally.
+        /// Bounces the bullet horizontally.
         /// </summary>
         public void BounceX()
         {
@@ -37,7 +37,7 @@ namespace Unit06.Game.Casting
         }
 
         /// <summary>
-        /// Bounces the ball vertically.
+        /// Bounces the bullet vertically.
         /// </summary>
         public void BounceY()
         {
@@ -68,15 +68,15 @@ namespace Unit06.Game.Casting
         }
 
         /// <summary>
-        /// Releases ball in random horizontal direction.
+        /// Releases rock in random horizontal direction.
         /// </summary>
         public void Release()
         {
             Point velocity = _body.GetVelocity();
-            List<int> velocities = new List<int> {Constants.BALL_VELOCITY, Constants.BALL_VELOCITY};
+            List<int> velocities = new List<int> {Constants.BULLET_VELOCITY, Constants.BULLET_VELOCITY};
             int index = _random.Next(velocities.Count);
             double vx = velocities[index];
-            double vy = -Constants.BALL_VELOCITY;
+            double vy = -Constants.BULLET_VELOCITY;
             Point newVelocity = new Point((int)vx, (int)vy);
             _body.SetVelocity(newVelocity);
         }

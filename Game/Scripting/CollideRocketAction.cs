@@ -4,12 +4,12 @@ using Unit06.Game.Services;
 
 namespace Unit06.Game.Scripting
 {
-    public class CollideRacketAction : Action
+    public class CollideRocketAction : Action
     {
         private AudioService _audioService;
         private PhysicsService _physicsService;
         
-        public CollideRacketAction(PhysicsService physicsService, AudioService audioService)
+        public CollideRocketAction(PhysicsService physicsService, AudioService audioService)
         {
             this._physicsService = physicsService;
             this._audioService = audioService;
@@ -17,14 +17,14 @@ namespace Unit06.Game.Scripting
 
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            Ball ball = (Ball)cast.GetFirstActor(Constants.BALL_GROUP);
-            Racket racket = (Racket)cast.GetFirstActor(Constants.RACKET_GROUP);
-            Body ballBody = ball.GetBody();
-            Body racketBody = racket.GetBody();
+            Bullet bullet = (Bullet)cast.GetFirstActor(Constants.BULLET_GROUP);
+            Rocket rocket = (Rocket)cast.GetFirstActor(Constants.ROCKET_GROUP);
+            Body bulletBody = bullet.GetBody();
+            Body rocketBody = rocket.GetBody();
 
-            if (_physicsService.HasCollided(racketBody, ballBody))
+            if (_physicsService.HasCollided(rocketBody, bulletBody))
             {
-                ball.BounceY();
+                bullet.BounceY();
                 Sound sound = new Sound(Constants.BOUNCE_SOUND);
                 _audioService.PlaySound(sound);
             }

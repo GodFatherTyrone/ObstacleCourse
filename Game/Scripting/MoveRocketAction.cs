@@ -2,15 +2,15 @@ using Unit06.Game.Casting;
 
 namespace Unit06.Game.Scripting
 {
-    public class MoveRacketAction : Action
+    public class MoveRocketAction : Action
     {
-        public MoveRacketAction()
+        public MoveRocketAction()
         {
         }
 
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            Racket racket = (Racket)cast.GetFirstActor(Constants.RACKET_GROUP);
+            Rocket racket = (Rocket)cast.GetFirstActor(Constants.ROCKET_GROUP);
             Body body = racket.GetBody();
             Point position = body.GetPosition();
             Point velocity = body.GetVelocity();
@@ -21,9 +21,9 @@ namespace Unit06.Game.Scripting
             {
                 position = new Point(0, position.GetY());
             }
-            else if (x > Constants.SCREEN_WIDTH - Constants.RACKET_WIDTH)
+            else if (x > Constants.SCREEN_WIDTH - Constants.ROCKET_WIDTH)
             {
-                position = new Point(Constants.SCREEN_WIDTH - Constants.RACKET_WIDTH, 
+                position = new Point(Constants.SCREEN_WIDTH - Constants.ROCKET_WIDTH, 
                     position.GetY());
             }
 

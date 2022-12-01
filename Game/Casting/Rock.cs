@@ -1,9 +1,10 @@
 namespace Unit06.Game.Casting
 {
+    // Brick to Rock
     /// <summary>
     /// A thing that participates in the game.
     /// </summary>
-    public class Brick : Actor
+    public class Rock : Actor
     {
         private Body _body;
         private Animation _animation;
@@ -12,7 +13,7 @@ namespace Unit06.Game.Casting
         /// <summary>
         /// Constructs a new instance of Actor.
         /// </summary>
-        public Brick(Body body, Animation animation, int points, bool debug) : base(debug)
+        public Rock(Body body, Animation animation, int points, bool debug) : base(debug)
         {
             this._body = body;
             this._animation = animation;

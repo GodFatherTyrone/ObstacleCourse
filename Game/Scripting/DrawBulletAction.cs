@@ -4,21 +4,21 @@ using Unit06.Game.Services;
 
 namespace Unit06.Game.Scripting
 {
-    public class DrawBallAction : Action
+    public class DrawBulletAction : Action
     {
         private VideoService _videoService;
         
-        public DrawBallAction(VideoService videoService)
+        public DrawBulletAction(VideoService videoService)
         {
             this._videoService = videoService;
         }
 
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            Ball ball = (Ball)cast.GetFirstActor(Constants.BALL_GROUP);
-            Body body = ball.GetBody();
+            Bullet bullet = (Bullet)cast.GetFirstActor(Constants.BULLET_GROUP);
+            Body body = bullet.GetBody();
 
-            if (ball.IsDebug())
+            if (bullet.IsDebug())
             {
                 Rectangle rectangle = body.GetRectangle();
                 Point size = rectangle.GetSize();
@@ -26,7 +26,7 @@ namespace Unit06.Game.Scripting
                 _videoService.DrawRectangle(size, pos, Constants.PURPLE, false);
             }
 
-            Image image = ball.GetImage();
+            Image image = bullet.GetImage();
             Point position = body.GetPosition();
             _videoService.DrawImage(image, position);
         }

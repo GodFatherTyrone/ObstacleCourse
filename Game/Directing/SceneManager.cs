@@ -73,6 +73,11 @@ namespace Unit06.Game.Directing
             Bullet bullet = (Bullet)cast.GetFirstActor(Constants.BULLET_GROUP);
             bullet.Release();
         }
+        private void ActivateRock(Cast cast)
+        {
+            Rock rock = (Rock)cast.GetFirstActor(Constants.ROCK_GROUP);
+            rock.ChangeRockVelocity();
+        }
 
         private void PrepareNextLevel(Cast cast, Script script)
         {
@@ -110,6 +115,7 @@ namespace Unit06.Game.Directing
         private void PrepareInPlay(Cast cast, Script script)
         {
             ActivateBall(cast);
+            ActivateRock(cast);
             cast.ClearActors(Constants.DIALOG_GROUP);
 
             script.ClearAllActions();
@@ -322,6 +328,7 @@ namespace Unit06.Game.Directing
         {
             script.AddAction(Constants.UPDATE, new MoveBulletAction());
             script.AddAction(Constants.UPDATE, new MoveRocketAction());
+            script.AddAction(Constants.UPDATE, new MoveRockAction());
             script.AddAction(Constants.UPDATE, new CollideBordersAction(PhysicsService, AudioService));
             script.AddAction(Constants.UPDATE, new CollideRockAction(PhysicsService, AudioService));
             script.AddAction(Constants.UPDATE, new CollideRocketAction(PhysicsService, AudioService));

@@ -1,22 +1,15 @@
-﻿using Unit06.Game.Casting;
+﻿using System;
 using Unit06.Game.Directing;
-using Unit06.Game.Scripting;
 using Unit06.Game.Services;
 
-namespace ObstacleCourse
+namespace Unit06
 {
-    internal class Program
+    public class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            IServiceFactory serviceFactory = new RaylibServiceFactory();
-            Scene scene = new Scene();
-
-            SceneLoader menuSceneLoader = new MenuSceneLoader(serviceFactory);
-            menuSceneLoader.Load(scene);
-
-            Director director = new Director(serviceFactory);
-            director.Direct(scene);
+            Director director = new Director(SceneManager.VideoService);
+            director.StartGame();
         }
     }
 }

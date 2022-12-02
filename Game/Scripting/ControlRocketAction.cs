@@ -24,6 +24,14 @@ namespace Unit06.Game.Scripting
             {
                 rocket.SwingRight();
             }
+            else if (_keyboardService.IsKeyDown(Constants.UP))
+            {
+                rocket.SwingUp();
+            }
+            else if (_keyboardService.IsKeyDown(Constants.DOWN))
+            {
+                rocket.SwingDown();
+            }
             else
             {
                 rocket.StopMoving();

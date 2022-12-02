@@ -43,19 +43,13 @@ namespace Unit06.Game.Scripting
             }
             else if (y >= Constants.FIELD_BOTTOM - Constants.BULLET_WIDTH)
             {
-                Stats stats = (Stats)cast.GetFirstActor(Constants.STATS_GROUP);
-                stats.RemoveLife();
-
-                if (stats.GetLives() > 0)
-                {
-                    callback.OnNext(Constants.TRY_AGAIN);
-                }
-                else
-                {
-                    callback.OnNext(Constants.GAME_OVER);
-                    _audioService.PlaySound(overSound);
-                }
-            }
+                ball.BounceY();
+                _audioService.PlaySound(bounceSound);
+                
+                // if (stats.GetLives() > 0)
+                // {
+                //     callback.OnNext(Constants.TRY_AGAIN);
+            }  
         }
     }
 }

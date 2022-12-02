@@ -64,6 +64,16 @@ namespace Unit06.Game.Casting
             _body.SetVelocity(velocity);
         }
 
+        public void SwingUp()
+        {
+            Point velocity = new Point(0, -Constants.ROCKET_VELOCITY);
+            _body.SetVelocity(velocity);
+        }
+        public void SwingDown()
+        {
+            Point velocity = new Point(0, Constants.ROCKET_VELOCITY);
+            _body.SetVelocity(velocity);
+        }
         /// <summary>
         /// Stops the rocket from moving.
         /// </summary>

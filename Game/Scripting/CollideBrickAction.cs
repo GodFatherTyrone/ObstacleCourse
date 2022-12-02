@@ -19,6 +19,7 @@ namespace Unit06.Game.Scripting
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
             Bullet bullet = (Bullet)cast.GetFirstActor(Constants.BULLET_GROUP);
+            Rocket rocket = (Rocket)cast.GetFirstActor(Constants.ROCKET_GROUP);
             List<Actor> rock = cast.GetActors(Constants.ROCK_GROUP);
             Stats stats = (Stats)cast.GetFirstActor(Constants.STATS_GROUP);
             
@@ -27,6 +28,8 @@ namespace Unit06.Game.Scripting
                 Rock Rock = (Rock)actor;
                 Body RockBody = Rock.GetBody();
                 Body bulletBody = bullet.GetBody();
+                Body RocketBody = rocket.GetBody();
+                Sound overSound = new Sound(Constants.OVER_SOUND);
 
                 if (_physicsService.HasCollided(RockBody, bulletBody))
                 {
@@ -36,6 +39,21 @@ namespace Unit06.Game.Scripting
                     int points = Rock.GetPoints();
                     stats.AddPoints(points);
                     cast.RemoveActor(Constants.ROCK_GROUP, Rock);
+                }
+
+                if (_physicsService.HasCollided(RocketBody, RockBody))
+                {
+                    stats.RemoveLife();
+
+                    if (stats.GetLives() > 0)
+                    {
+                        callback.OnNext(Constants.TRY_AGAIN);
+                    }
+                    else
+                    {
+                        callback.OnNext(Constants.GAME_OVER);
+                        _audioService.PlaySound(overSound);
+                }
                 }
             }
         }

@@ -21,6 +21,7 @@ namespace Unit06.Game.Scripting
             Rocket rocket = (Rocket)cast.GetFirstActor(Constants.ROCKET_GROUP);
             Body bulletBody = bullet.GetBody();
             Body rocketBody = rocket.GetBody();
+            Sound overSound = new Sound(Constants.OVER_SOUND);
 
             if (_physicsService.HasCollided(rocketBody, bulletBody))
             {
@@ -28,6 +29,8 @@ namespace Unit06.Game.Scripting
                 Sound sound = new Sound(Constants.BOUNCE_SOUND);
                 _audioService.PlaySound(sound);
             }
+            
+            
         }
     }
 }

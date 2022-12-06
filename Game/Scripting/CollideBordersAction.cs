@@ -22,6 +22,7 @@ namespace Unit06.Game.Scripting
             Point position = body.GetPosition();
             int x = position.GetX();
             int y = position.GetY();
+            
             Sound bounceSound = new Sound(Constants.BOUNCE_SOUND);
             Sound overSound = new Sound(Constants.OVER_SOUND);
 

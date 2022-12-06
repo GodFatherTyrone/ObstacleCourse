@@ -11,12 +11,16 @@ namespace Unit06.Game.Scripting
 
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            Rock rock = (Rock)cast.GetFirstActor(Constants.ROCK_GROUP);
-            Body body = rock.GetBody();
-            Point position = body.GetPosition();
-            Point velocity = body.GetVelocity();
-            position = position.Add(velocity);
-            body.SetPosition(position);
+            List<Actor> rocks = cast.GetActors(Constants.ROCK_GROUP);
+            foreach (Actor actor in rocks)
+            {
+                Rock rock = (Rock)actor;
+                Body body = rock.GetBody();
+                Point position = body.GetPosition();
+                Point velocity = body.GetVelocity();
+                position = position.Add(velocity);
+                body.SetPosition(position);
+            }
         }
     }
 }

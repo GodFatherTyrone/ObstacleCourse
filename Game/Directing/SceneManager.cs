@@ -51,7 +51,7 @@ namespace Unit06.Game.Directing
             AddLevel(cast);
             AddScore(cast);
             AddLives(cast);
-            AddBullet(cast);
+            // AddBullet(cast);
             AddRock(cast);
             AddRocket(cast);
             AddDialog(cast, Constants.ENTER_TO_START);
@@ -75,13 +75,19 @@ namespace Unit06.Game.Directing
         }
         private void ActivateRock(Cast cast)
         {
-            Rock rock = (Rock)cast.GetFirstActor(Constants.ROCK_GROUP);
-            rock.ChangeRockVelocity();
+            List<Actor> rocks = cast.GetActors(Constants.ROCK_GROUP);
+            foreach (Actor actor in rocks)
+            {
+                Rock rock = (Rock)actor;
+                rock.ChangeRockVelocity();
+            }
+            
+            
         }
 
         private void PrepareNextLevel(Cast cast, Script script)
         {
-            AddBullet(cast);
+            // AddBullet(cast);
             AddRock(cast);
             AddRocket(cast);
             AddDialog(cast, Constants.PREP_TO_LAUNCH);
@@ -99,7 +105,7 @@ namespace Unit06.Game.Directing
 
         private void PrepareTryAgain(Cast cast, Script script)
         {
-            AddBullet(cast);
+            //AddBullet(cast);
             AddRocket(cast);
             AddDialog(cast, Constants.PREP_TO_LAUNCH);
 
@@ -130,7 +136,7 @@ namespace Unit06.Game.Directing
 
         private void PrepareGameOver(Cast cast, Script script)
         {
-            AddBullet(cast);
+            // AddBullet(cast);
             AddRocket(cast);
             AddDialog(cast, Constants.WAS_GOOD_GAME);
 
@@ -146,23 +152,7 @@ namespace Unit06.Game.Directing
         // casting methods
         // -----------------------------------------------------------------------------------------
 
-        private void AddBullet(Cast cast)
-        {
-            cast.ClearActors(Constants.BULLET_GROUP);
         
-            int x = Constants.CENTER_X - Constants.BULLET_WIDTH / 2;
-            int y = Constants.SCREEN_HEIGHT - Constants.ROCKET_HEIGHT - Constants.BULLET_HEIGHT;
-        
-            Point position = new Point(x, y);
-            Point size = new Point(Constants.BULLET_WIDTH, Constants.BULLET_HEIGHT);
-            Point velocity = new Point(0, 0);
-        
-            Body body = new Body(position, size, velocity);
-            Image image = new Image(Constants.BULLET_IMAGE);
-            Bullet ball = new Bullet(body, image, false);
-        
-            cast.AddActor(Constants.BULLET_GROUP, ball);
-        }
 
         private void AddRock(Cast cast)
         {

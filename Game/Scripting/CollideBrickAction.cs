@@ -55,6 +55,10 @@ namespace Unit06.Game.Scripting
                         _audioService.PlaySound(overSound);
                 }
                 }
+                //Body bottomScreen = new Body(Constants.SCREEN_HEIGHT, 0, 0)
+                //if (_physicsService.HasCollided(RockBody, bottomScreen) {
+//
+                //}
             }
         }
     }

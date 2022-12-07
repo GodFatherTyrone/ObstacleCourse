@@ -74,9 +74,11 @@ namespace Unit06.Game.Directing
             bullet.Release();
         }
         private void ActivateRock(Cast cast)
-        {
+        { //sets new velocity to (hopefully) fall
             Rock rock = (Rock)cast.GetFirstActor(Constants.ROCK_GROUP);
-            rock.ChangeRockVelocity();
+            Body rockBody = rock.GetBody();
+            Point newVelocity = new Point(0, 5);
+            rockBody.SetVelocity(newVelocity);
         }
 
         private void PrepareNextLevel(Cast cast, Script script)

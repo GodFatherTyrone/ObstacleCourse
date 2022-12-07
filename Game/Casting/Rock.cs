@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace Unit06.Game.Casting
 {
     // Brick to Rock
@@ -6,6 +9,8 @@ namespace Unit06.Game.Casting
     /// </summary>
     public class Rock : Actor
     {
+        private static Random _random = new Random();
+
         private Body _body;
         private Animation _animation;
         private int _points;
@@ -45,6 +50,16 @@ namespace Unit06.Game.Casting
         public int GetPoints()
         {
             return _points;
+        }
+        public void ChangeRockVelocity()
+        {
+            Point velocity = _body.GetVelocity();
+            List<int> velocities = new List<int> {Constants.ROCK_VELOCITY, Constants.ROCK_VELOCITY};
+            int index = _random.Next(velocities.Count);
+            double vx = velocities[index];
+            double vy = -Constants.BULLET_VELOCITY;
+            Point newVelocity = new Point((int)vx, (int)vy);
+            _body.SetVelocity(newVelocity);
         }
         
     }

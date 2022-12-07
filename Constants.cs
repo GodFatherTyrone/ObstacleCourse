@@ -175,6 +175,7 @@ namespace Unit06
         public static double ROCK_DELAY = 0.5;
         public static int ROCK_RATE = 4;
         public static int ROCK_POINTS = 50;
+        public static int ROCK_VELOCITY = 2;
 
         // DIALOG
         public static string DIALOG_GROUP = "dialogs";

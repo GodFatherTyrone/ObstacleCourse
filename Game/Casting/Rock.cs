@@ -54,10 +54,10 @@ namespace Unit06.Game.Casting
         public void ChangeRockVelocity()
         {
             Point velocity = _body.GetVelocity();
-            List<int> velocities = new List<int> {Constants.ROCK_VELOCITY, Constants.ROCK_VELOCITY};
+            List<int> velocities = new List<int> {0, Constants.ROCK_VELOCITY};
             int index = _random.Next(velocities.Count);
             double vx = velocities[index];
-            double vy = -Constants.BULLET_VELOCITY;
+            double vy = Constants.BULLET_VELOCITY;
             Point newVelocity = new Point((int)vx, (int)vy);
             _body.SetVelocity(newVelocity);
         }

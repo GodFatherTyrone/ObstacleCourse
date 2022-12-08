@@ -14,6 +14,9 @@ namespace Unit06
         public static string GAME_NAME = "Batter";
         public static int FRAME_RATE = 60;
 
+        // GAME LOOP
+        public static int gameLoop = 50;
+
         // SCREEN
         public static int SCREEN_WIDTH = 1040;
         public static int SCREEN_HEIGHT = 680;
@@ -86,7 +89,7 @@ namespace Unit06
         // STATS
         public static string STATS_GROUP = "stats";
         public static int DEFAULT_LIVES = 3;
-        public static int MAXIMUM_LIVES = 5;
+        //public static int MAXIMUM_LIVES = 5;
 
         // HUD
         public static int HUD_MARGIN = 15;
@@ -109,6 +112,7 @@ namespace Unit06
         
         public static List<string> ROCKET_IMAGES
             = new List<string>() {
+                //"Assets/Images/UserImage.txt"
                 "Assets/Images/100.png",
                 "Assets/Images/101.png",
                 "Assets/Images/102.png"
@@ -118,6 +122,7 @@ namespace Unit06
         public static int ROCKET_HEIGHT = 28;
         public static int ROCKET_RATE = 6;
         public static int ROCKET_VELOCITY = 10;
+    
 
         // Rock
         public static string ROCK_GROUP = "rock";

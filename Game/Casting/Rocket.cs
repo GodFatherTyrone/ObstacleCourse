@@ -60,7 +60,7 @@ namespace Unit06.Game.Casting
         /// </summary>
         public void SwingRight()
         {
-            Point                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            velocity = new Point(Constants.ROCKET_VELOCITY, 0);
+            Point velocity = new Point(Constants.ROCKET_VELOCITY, 0);
             _body.SetVelocity(velocity);
         }
 

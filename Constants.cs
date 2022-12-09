@@ -11,7 +11,7 @@ namespace Unit06
         // ----------------------------------------------------------------------------------------- 
 
         // GAME
-        public static string GAME_NAME = "Batter";
+        public static string GAME_NAME = "ObstacleCourse";
         public static int FRAME_RATE = 60;
 
         // GAME LOOP
@@ -112,10 +112,10 @@ namespace Unit06
         
         public static List<string> ROCKET_IMAGES
             = new List<string>() {
-                //"Assets/Images/UserImage.txt"
-                "Assets/Images/100.png",
-                "Assets/Images/101.png",
-                "Assets/Images/102.png"
+                "Assets/Images/Rocket5.png"
+                // "Assets/Images/100.png",
+                // "Assets/Images/101.png",
+                // "Assets/Images/102.png"
             };
 
         public static int ROCKET_WIDTH = 28;
@@ -180,7 +180,7 @@ namespace Unit06
         public static double ROCK_DELAY = 0.5;
         public static int ROCK_RATE = 4;
         public static int ROCK_POINTS = 50;
-        public static int ROCK_VELOCITY = 2;
+        public static int ROCK_VELOCITY = 1;
 
         // DIALOG
         public static string DIALOG_GROUP = "dialogs";

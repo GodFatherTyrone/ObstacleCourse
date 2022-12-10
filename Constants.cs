@@ -109,9 +109,10 @@ namespace Unit06
         
         public static List<string> ROCKET_IMAGES
             = new List<string>() {
-                "Assets/Images/100.png",
-                "Assets/Images/101.png",
-                "Assets/Images/102.png"
+                "Assets/Images/User.txt"
+               // "Assets/Images/100.png",
+                //"Assets/Images/101.png",
+               // "Assets/Images/102.png"
             };
 
         public static int ROCKET_WIDTH = 28;
@@ -170,7 +171,7 @@ namespace Unit06
                 } }
         };
 
-        public static int ROCK_WIDTH = 80;
+        public static int ROCK_WIDTH = 240;
         public static int ROCK_HEIGHT = 28;
         public static double ROCK_DELAY = 0.5;
         public static int ROCK_RATE = 4;

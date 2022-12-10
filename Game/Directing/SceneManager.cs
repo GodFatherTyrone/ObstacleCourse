@@ -202,6 +202,7 @@ namespace Unit06.Game.Directing
             Bullet ball = new Bullet(body, image, false);
         
             cast.AddActor(Constants.BULLET_GROUP, ball);
+            cast.AddActor(Constants.BULLET_GROUP, ball);
         }
 
         private void AddDialog(Cast cast, string message)

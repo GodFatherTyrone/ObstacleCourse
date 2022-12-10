@@ -30,6 +30,10 @@ namespace Unit06.Game.Scripting
                 Body bulletBody = bullet.GetBody();
                 Body RocketBody = rocket.GetBody();
                 Sound overSound = new Sound(Constants.OVER_SOUND);
+                
+                Point position = RockBody.GetPosition();
+                int x = position.GetX();
+                int y = position.GetY();
 
                 if (_physicsService.HasCollided(RockBody, bulletBody))
                 {
@@ -39,6 +43,8 @@ namespace Unit06.Game.Scripting
                     int points = Rock.GetPoints();
                     stats.AddPoints(points);
                     cast.RemoveActor(Constants.ROCK_GROUP, Rock);
+                    // THIS REMOVES THE BULLET, BUT ALSO CRASHES THE GAME
+                    ///cast.RemoveActor(Constants.BULLET_GROUP, bullet);
                 }
 
                 if (_physicsService.HasCollided(RocketBody, RockBody))
@@ -53,8 +59,18 @@ namespace Unit06.Game.Scripting
                     {
                         callback.OnNext(Constants.GAME_OVER);
                         _audioService.PlaySound(overSound);
+                    }
                 }
+                // Remove Rock when it touches the bottom
+                if (y >= Constants.FIELD_BOTTOM - Constants.ROCK_HEIGHT)
+                {
+                    
+                    cast.RemoveActor(Constants.ROCK_GROUP, Rock);
                 }
+
+
+
+
                 //Body bottomScreen = new Body(Constants.SCREEN_HEIGHT, 0, 0)
                 //if (_physicsService.HasCollided(RockBody, bottomScreen) {
 //

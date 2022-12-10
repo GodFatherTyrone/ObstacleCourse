@@ -58,7 +58,7 @@ namespace Unit06.Game.Casting
             int index = _random.Next(velocities.Count);
             double vx = velocities[index];
             double vy = Constants.BULLET_VELOCITY;
-            Point newVelocity = new Point((int)vx, (int)vy);
+            Point newVelocity = new Point(0, (int)vy);
             _body.SetVelocity(newVelocity);
         }
         

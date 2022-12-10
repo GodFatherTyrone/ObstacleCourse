@@ -23,6 +23,7 @@ namespace Unit06.Game.Scripting
             Body rocketBody = rocket.GetBody();
             Sound overSound = new Sound(Constants.OVER_SOUND);
 
+            ///The bullet Bounces off the Bricks
             if (_physicsService.HasCollided(rocketBody, bulletBody))
             {
                 bullet.BounceY();
